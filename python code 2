@@ -1,0 +1,37 @@
+# Define Pushdown Automaton (PDA)
+#2nd example with different states and transitions
+states = ["p0", "p1", "p2"]
+input_symbols = ["a", "b"]
+stack_symbols = ["Z", "S"]
+transitions = {
+    ("p0", "a", "Z"): ("p1", "S"),
+    ("p1", "b", "S"): ("p2", "ε"),  # ε represents the empty string
+    ("p2", "a", "ε"): ("p1", "Z"),  # Added a new transition for 'a' in state 'p2'
+}
+start_state = "p0"
+start_symbol = "Z"
+
+# Generate DOT code
+dot_code = f"""
+digraph PDA {{
+  rankdir=LR;
+  node [shape=circle];
+
+  // Define states
+  {", ".join([f"{state}" for state in states])};
+
+  // Define start state
+  {start_state} [style=bold];
+
+  """
+
+for (state, input_symbol, stack_symbol), (next_state, popped_symbol) in transitions.items():
+    dot_code += f"""
+    {state} [label="{state}/{input_symbol}, {stack_symbol}"];
+    {state} -> {next_state} [label="{input_symbol}/{popped_symbol}"];
+  """
+
+dot_code += "}"
+
+# Print the DOT code for copying and pasting to Graphviz Online
+print(dot_code)
