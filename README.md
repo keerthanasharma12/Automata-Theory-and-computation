@@ -5,7 +5,6 @@ The PDA Visualizer project is an innovative Python-based tool designed to simpli
 
 Users can effortlessly integrate the generated dot code into an online PDA visualizer, where the magic truly happens. The online visualizer interprets the dot code and transforms it into intuitive state transition diagrams. These diagrams vividly illustrate the intricate interactions between states, alphabets, and stack symbols, providing a clear and comprehensive representation of the PDA's behavior.
 
-By offering a user-friendly interface and automating the dot code generation process, the PDA Visualizer project significantly enhances the accessibility and efficiency of creating and visualizing PDAs. Whether you are a student learning about automata theory or a professional implementing PDAs in real-world applications, this tool simplifies the complex task of PDA design and visualization, making it an invaluable asset for anyone working with pushdown automata.
 
 
 
