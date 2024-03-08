@@ -1,0 +1,35 @@
+# Define PDA states, input symbols, stack symbols, transitions, and start state/symbol
+#example 1
+states = ["q0", "q1", "q2"]
+input_symbols = ["a", "b"]
+stack_symbols = ["Z", "S"]
+transitions = {
+    ("q0", "a", "Z"): ("q1", "S"),
+    ("q1", "b", "S"): ("q2", "ε"),  # ε represents the empty string
+}
+start_state = "q0"
+start_symbol = "Z"
+dot_code = f"""
+digraph PDA {{
+  rankdir=LR;
+  node [shape=circle];
+
+  // Define states
+  {", ".join([f"{state}" for state in states])};
+
+  // Define start state
+  {start_state} [style=bold];
+
+  // Add transitions
+  """
+
+for (state, input_symbol, stack_symbol), (next_state, popped_symbol) in transitions.items():
+    dot_code += f"""
+    {state} [label="{state}/{input_symbol}, {stack_symbol}"];
+    {state} -> {next_state} [label="{input_symbol}/{popped_symbol}"];
+  """
+
+dot_code += "}"
+
+# Print the DOT code for inspection or saving to a file
+print(dot_code)
